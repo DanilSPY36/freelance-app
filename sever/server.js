@@ -150,6 +150,22 @@ app.post("/api/user/orders/:uuid", async(req, res) => {
     }
 })
 
+//удаление заказа
+app.delete("/api/order/:id", async(req, res) => {
+    const id = req. params.id;
+    try {
+        await MongoDBClient.connect();
+        const exployees = MongoDBClient.db("freelancedb").collection("orders");
+        const filter = {_id: new ObjectId(id)};
+        await exployees.deleteOne(filter);
+        res.status(200).send("Заказ успешно удален");
+    } catch (error) {
+        res.status(500).send(error.message);
+        console.error(`Ошибка удаления заказа: ${error}`);
+    } finally {
+        await MongoDBClient.close();
+    }
+})
 
 //запуск и прослушивание входящих подключений к серверу
 app.listen(port, () => {
