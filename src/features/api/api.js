@@ -1,26 +1,34 @@
 import axios from "axios";
- 
+
 const api_url = "http://localhost:8888/api";
- 
+
 export async function createPerson(person) {
-    const res = await axios.post(`${api_url}/create/person/${person.uuid}`, person, {
-        headers: {
-            "Content-Type" : "application/json"
+    const res = await axios.post(
+        `${api_url}/create/person/${person.uuid}`,
+        person,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
         }
-    });
-    if(res.status !== 200) {
+    );
+    if (res.status !== 200) {
         throw new Error("Ошибка при добавлении пользователя");
     }
     return res.data;
 }
- 
+
 export async function updatePerson(person) {
-    const res = await axios.put(`${api_url}/update/person/${person.uuid}`, person, {
-        headers: {
-            "Content-Type" : "application/json"
+    const res = await axios.put(
+        `${api_url}/update/person/${person.uuid}`,
+        person,
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
         }
-    })
-    if(res.status !== 200) {
+    );
+    if (res.status !== 200) {
         throw new Error("Ошибка при изменении пользователя");
     }
     return res.data;
@@ -33,6 +41,7 @@ export async function getPerson(uuid) {
     }
     return res.data;
 }
+
 export async function saveOrder(order) {
     const res = await axios.post(
         `${api_url}/user/orders/${order.uuid}`,
@@ -48,7 +57,7 @@ export async function saveOrder(order) {
     }
     return res.data;
 }
- 
+
 export async function getOrders(uuid) {
     const res = await axios.get(`${api_url}/user/orders/${uuid}`);
     if(res.status !== 200) {
@@ -56,7 +65,7 @@ export async function getOrders(uuid) {
     }
     return res.data;
 }
- 
+
 export async function getFeedOrders(uuid) {
     const res = await axios.get(`${api_url}/feeds/${uuid}`);
     if(res.status !== 200) {
@@ -64,7 +73,7 @@ export async function getFeedOrders(uuid) {
     }
     return res.data;
 }
- 
+
 export async function getOneOrder(id) {
     const res = await axios.get(`${api_url}/order/${id}`);
     if(res.status !== 200) {
@@ -80,3 +89,4 @@ export async function deleteOrder(id) {
     }
     return res.data;
 }
+

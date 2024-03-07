@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { deleteOrder, getOneOrder } from "../../features/slices/orderSlice";
 import { gsap } from "gsap/gsap-core";
- 
+
 const Order = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const orders = useSelector((state) => state.orderSlice.oneOrder);
     const user = useSelector((state) => state.userState.uuid);
- 
+
     const handleAnimate = () => {
         let tl = gsap.timeline({ repeat: false });
         tl.fromTo(
@@ -26,19 +26,19 @@ const Order = () => {
             }
         );
     };
- 
+
     useEffect(() => {
         handleAnimate();
     }, []);
- 
+
     useEffect(() => {
         dispatch(getOneOrder(params.id));
     }, [dispatch, params.id]);
- 
+
     const handleDeleteOrder = (order) => {
         dispatch(deleteOrder(order));
     };
- 
+
     if (orders.length > 0) {
         return (
             <section className="py-8 px-6 xl:px-0">
@@ -78,8 +78,8 @@ const Order = () => {
                                 <button className="bg-yaOrange hover:bg-yaOrange-medium transition-all rounded px-3 py-1 text-white w-full sm:w-fit">
                                     Изменить
                                 </button>
-                                <Link
-                                to="/author"
+                                <Link 
+                                to="/author" 
                                 onClick={() => handleDeleteOrder(orders[0]._id)}
                                 className="bg-red-500 hover:bg-red-600 transition-all rounded px-3 py-1 text-white w-full sm:w-fit text-center"
                                 >
@@ -121,5 +121,5 @@ const Order = () => {
         )
     }
 };
- 
+
 export default Order;
