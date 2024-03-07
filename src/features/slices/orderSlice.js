@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api/api";
- 
+
 export const getOrders = createAsyncThunk("user/getOrders", api.getOrders);
 export const saveOrder = createAsyncThunk("user/saveOrder", api.saveOrder);
 export const getFeedOrders = createAsyncThunk(
@@ -15,7 +15,7 @@ export const deleteOrder = createAsyncThunk(
     "user/deleteOrder",
     api.deleteOrder
 );
- 
+
 const orderSlice = createSlice({
     name: "orderSlice",
     initialState: {
@@ -56,6 +56,6 @@ const orderSlice = createSlice({
             });
     },
 });
-
 export const regState = (state) => state.orderSlice.orderList;
+
 export default orderSlice.reducer;

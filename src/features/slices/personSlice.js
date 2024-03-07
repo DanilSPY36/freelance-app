@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api/api";
- 
+
 export const createPerson = createAsyncThunk(
     "person/createPerson",
     api.createPerson
@@ -10,7 +10,7 @@ export const updatePerson = createAsyncThunk(
     api.updatePerson
 );
 export const getPerson = createAsyncThunk("person/getPerson", api.getPerson);
- 
+
 const personSlice = createSlice({
     name: "personState",
     initialState: {
@@ -47,6 +47,6 @@ const personSlice = createSlice({
             });
     },
 });
- 
+
 export const regState = (state) => state.personState;
 export default personSlice.reducer;
